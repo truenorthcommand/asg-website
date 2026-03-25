@@ -72,3 +72,14 @@
 - [x] Create Terms & Conditions page (/terms)
 - [x] Link Privacy and Terms pages in Footer
 - [x] Update App.tsx routing for Privacy and Terms pages
+
+## Blog Section (AI-First with HITL Admin Dashboard)
+- [x] Create blog database schema and tRPC procedures (13 procedures)
+- [x] Build admin dashboard UI (Drafts, Scheduled, Live tabs)
+- [x] Build edit modal and preview modal
+- [x] Create brand voice guidelines document (docs/ASG_BRAND_VOICE.md)
+- [x] Create blog listing page and individual article pages with SEO
+- [ ] Create AI generation job (scheduled Mon/Wed/Fri 6 PM)
+- [ ] Add blog links to navigation and update sitemap
+- [ ] Test blog system end-to-end
+- [ ] Set up monitoring for AI generation job

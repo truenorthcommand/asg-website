@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { initializeDatabase } from "./db";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -28,6 +29,14 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
+  // Initialize database connection first
+  try {
+    await initializeDatabase();
+  } catch (error) {
+    console.error("[Server] Failed to initialize database:", error);
+    process.exit(1);
+  }
+
   const app = express();
   const server = createServer(app);
   

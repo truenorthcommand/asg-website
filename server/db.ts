@@ -1,92 +1,191 @@
-import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
-import { ENV } from './_core/env';
+import { users, blogPosts, blogPostEdits } from "../drizzle/schema";
+import { eq, desc, and } from "drizzle-orm";
+import { getDatabase } from "./_core/db";
 
-let _db: ReturnType<typeof drizzle> | null = null;
+// ============================================================================
+// User Queries
+// ============================================================================
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
-export async function getDb() {
-  if (!_db && process.env.DATABASE_URL) {
-    try {
-      _db = drizzle(process.env.DATABASE_URL);
-    } catch (error) {
-      console.warn("[Database] Failed to connect:", error);
-      _db = null;
-    }
-  }
-  return _db;
-}
-
-export async function upsertUser(user: InsertUser): Promise<void> {
-  if (!user.openId) {
-    throw new Error("User openId is required for upsert");
-  }
-
-  const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot upsert user: database not available");
-    return;
-  }
-
-  try {
-    const values: InsertUser = {
-      openId: user.openId,
-    };
-    const updateSet: Record<string, unknown> = {};
-
-    const textFields = ["name", "email", "loginMethod"] as const;
-    type TextField = (typeof textFields)[number];
-
-    const assignNullable = (field: TextField) => {
-      const value = user[field];
-      if (value === undefined) return;
-      const normalized = value ?? null;
-      values[field] = normalized;
-      updateSet[field] = normalized;
-    };
-
-    textFields.forEach(assignNullable);
-
-    if (user.lastSignedIn !== undefined) {
-      values.lastSignedIn = user.lastSignedIn;
-      updateSet.lastSignedIn = user.lastSignedIn;
-    }
-    if (user.role !== undefined) {
-      values.role = user.role;
-      updateSet.role = user.role;
-    } else if (user.openId === ENV.ownerOpenId) {
-      values.role = 'admin';
-      updateSet.role = 'admin';
-    }
-
-    if (!values.lastSignedIn) {
-      values.lastSignedIn = new Date();
-    }
-
-    if (Object.keys(updateSet).length === 0) {
-      updateSet.lastSignedIn = new Date();
-    }
-
-    await db.insert(users).values(values).onDuplicateKeyUpdate({
-      set: updateSet,
-    });
-  } catch (error) {
-    console.error("[Database] Failed to upsert user:", error);
-    throw error;
-  }
+export async function getUserById(id: number) {
+  const db = getDatabase();
+  return db.select().from(users).where(eq(users.id, id)).get();
 }
 
 export async function getUserByOpenId(openId: string) {
-  const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
-    return undefined;
-  }
-
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
-
-  return result.length > 0 ? result[0] : undefined;
+  const db = getDatabase();
+  return db.select().from(users).where(eq(users.openId, openId)).get();
 }
 
-// TODO: add feature queries here as your schema grows.
+export async function createUser(data: {
+  openId: string;
+  name?: string;
+  email?: string;
+  loginMethod?: string;
+}) {
+  const db = getDatabase();
+  return db.insert(users).values(data).returning();
+}
+
+export async function updateUser(id: number, data: Partial<typeof users.$inferInsert>) {
+  const db = getDatabase();
+  return db.update(users).set(data).where(eq(users.id, id)).returning();
+}
+
+export async function upsertUser(data: {
+  openId: string;
+  name?: string | null;
+  email?: string | null;
+  loginMethod?: string | null;
+  lastSignedIn?: Date;
+}) {
+  const existing = await getUserByOpenId(data.openId);
+  if (existing) {
+    const updateData: any = {
+      ...(data.name !== undefined && { name: data.name }),
+      ...(data.email !== undefined && { email: data.email }),
+      ...(data.loginMethod !== undefined && { loginMethod: data.loginMethod }),
+      ...(data.lastSignedIn && { lastSignedIn: data.lastSignedIn }),
+    };
+    return updateUser(existing.id, updateData);
+  }
+  return createUser({
+    openId: data.openId,
+    name: data.name || undefined,
+    email: data.email || undefined,
+    loginMethod: data.loginMethod || undefined,
+  });
+}
+
+// ============================================================================
+// Blog Post Queries
+// ============================================================================
+
+export async function getBlogPostById(id: number) {
+  const db = getDatabase();
+  return db.select().from(blogPosts).where(eq(blogPosts.id, id)).get();
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  const db = getDatabase();
+  return db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).get();
+}
+
+export async function getBlogPostsByStatus(status: "draft" | "scheduled" | "published") {
+  const db = getDatabase();
+  return db
+    .select()
+    .from(blogPosts)
+    .where(eq(blogPosts.status, status))
+    .orderBy(desc(blogPosts.publishDate))
+    .all();
+}
+
+export async function getDraftPosts() {
+  return getBlogPostsByStatus("draft");
+}
+
+export async function getScheduledPosts() {
+  return getBlogPostsByStatus("scheduled");
+}
+
+export async function getPublishedPosts(limit = 20) {
+  const db = getDatabase();
+  return db
+    .select()
+    .from(blogPosts)
+    .where(eq(blogPosts.status, "published"))
+    .orderBy(desc(blogPosts.publishDate))
+    .limit(limit)
+    .all();
+}
+
+export async function getBlogPostsByCategory(category: "maintenance" | "case-study" | "emergency") {
+  const db = getDatabase();
+  return db
+    .select()
+    .from(blogPosts)
+    .where(and(eq(blogPosts.category, category), eq(blogPosts.status, "published")))
+    .orderBy(desc(blogPosts.publishDate))
+    .all();
+}
+
+export async function getRelatedBlogPosts(slug: string, limit = 3) {
+  const post = await getBlogPostBySlug(slug);
+  if (!post) return [];
+
+  const db = getDatabase();
+  return db
+    .select()
+    .from(blogPosts)
+    .where(
+      and(
+        eq(blogPosts.category, post.category),
+        eq(blogPosts.status, "published")
+      )
+    )
+    .orderBy(desc(blogPosts.publishDate))
+    .limit(limit)
+    .all()
+    .filter((p: any) => p.id !== post.id);
+}
+
+export async function createBlogPost(data: typeof blogPosts.$inferInsert) {
+  const db = getDatabase();
+  return db.insert(blogPosts).values(data).returning();
+}
+
+export async function updateBlogPost(id: number, data: Partial<typeof blogPosts.$inferInsert>) {
+  const db = getDatabase();
+  return db
+    .update(blogPosts)
+    .set({ ...data, updatedAt: new Date() })
+    .where(eq(blogPosts.id, id))
+    .returning();
+}
+
+export async function deleteBlogPost(id: number) {
+  const db = getDatabase();
+  return db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+export async function publishBlogPost(id: number, publishDate: Date = new Date()) {
+  return updateBlogPost(id, {
+    status: "published",
+    publishDate,
+  });
+}
+
+export async function scheduleBlogPost(id: number, publishDate: Date) {
+  return updateBlogPost(id, {
+    status: "scheduled",
+    publishDate,
+  });
+}
+
+export async function incrementBlogPostViews(id: number) {
+  const post = await getBlogPostById(id);
+  if (!post) return null;
+
+  return updateBlogPost(id, {
+    views: (post.views || 0) + 1,
+  });
+}
+
+// ============================================================================
+// Blog Post Edit History (Audit Trail)
+// ============================================================================
+
+export async function createBlogPostEdit(data: typeof blogPostEdits.$inferInsert) {
+  const db = getDatabase();
+  return db.insert(blogPostEdits).values(data).returning();
+}
+
+export async function getEditHistory(postId: number) {
+  const db = getDatabase();
+  return db
+    .select()
+    .from(blogPostEdits)
+    .where(eq(blogPostEdits.postId, postId))
+    .orderBy(desc(blogPostEdits.createdAt))
+    .all();
+}

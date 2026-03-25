@@ -4,6 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
+import { blogRouter } from "./routers/blog";
 
 // TrueNorthOS intake endpoint
 const TRUENORTHOS_ENDPOINT = "https://asgtruenorthos.cloud/api/external/intake/job";
@@ -105,6 +106,7 @@ export const appRouter = router({
     }),
   }),
   intake: intakeRouter,
+  blog: blogRouter,
 });
 
 export type AppRouter = typeof appRouter;
