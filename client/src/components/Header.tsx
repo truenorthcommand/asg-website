@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header
       className="sticky top-0 z-50 w-full shadow-md"
-      style={{ backgroundColor: "var(--asg-navy)" }}
+      style={{ backgroundColor: "#FFFFFF" }}
       role="banner"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,8 +49,8 @@ export default function Header() {
                 href={link.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   location === link.href
-                    ? "text-white bg-white/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                    ? "text-asg-navy bg-gray-100"
+                    : "text-gray-600 hover:text-asg-navy hover:bg-gray-100"
                 }`}
                 aria-current={location === link.href ? "page" : undefined}
               >
@@ -64,7 +64,7 @@ export default function Header() {
             {/* Phone number — desktop only */}
             <a
               href="tel:01233564666"
-              className="hidden lg:flex items-center gap-2 text-gray-300 hover:text-white text-sm font-medium transition-colors"
+              className="hidden lg:flex items-center gap-2 text-gray-600 hover:text-asg-navy text-sm font-medium transition-colors"
               aria-label="Call us on 01233 564666"
             >
               <Phone size={16} aria-hidden="true" />
@@ -90,7 +90,7 @@ export default function Header() {
 
             {/* Mobile menu toggle */}
             <button
-              className="lg:hidden p-2 rounded-md text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden p-2 rounded-md text-gray-600 hover:text-asg-navy hover:bg-gray-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
@@ -107,8 +107,8 @@ export default function Header() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden border-t border-white/10"
-          style={{ backgroundColor: "var(--asg-navy)" }}
+          className="lg:hidden border-t border-gray-200"
+          style={{ backgroundColor: "#FFFFFF" }}
           role="navigation"
           aria-label="Mobile navigation"
         >
@@ -119,8 +119,8 @@ export default function Header() {
                 href={link.href}
                 className={`block px-3 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
                   location === link.href
-                    ? "text-white bg-white/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                    ? "text-asg-navy bg-gray-100"
+                    : "text-gray-600 hover:text-asg-navy hover:bg-gray-100"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 aria-current={location === link.href ? "page" : undefined}
@@ -130,7 +130,7 @@ export default function Header() {
             ))}
             <a
               href="tel:01233564666"
-              className="flex items-center gap-2 px-3 py-3 text-gray-300 hover:text-white text-base font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-3 text-gray-600 hover:text-asg-navy text-base font-medium transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               <Phone size={18} aria-hidden="true" />

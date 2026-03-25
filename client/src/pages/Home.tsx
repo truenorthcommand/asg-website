@@ -45,7 +45,7 @@ export default function Home() {
       {/* Hero Content Section — Below the Image */}
       <section
         className="py-16 lg:py-24"
-        style={{ backgroundColor: "var(--asg-navy)" }}
+        style={{ backgroundColor: "#FFFFFF" }}
         aria-labelledby="hero-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,7 @@ export default function Home() {
 
             <h1
               id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black text-asg-navy leading-tight mb-6"
             >
               The New Industry Standard in{" "}
               <span style={{ color: "var(--asg-green-light)" }}>
@@ -69,7 +69,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 max-w-2xl">
               Adapt Services Group delivers professional property maintenance and emergency response across Kent and the South East. 100% in-house team. No subcontractors. No excuses.
             </p>
 
