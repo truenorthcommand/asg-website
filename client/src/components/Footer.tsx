@@ -80,6 +80,7 @@ export default function Footer() {
                 { href: "/sectors", label: "Sectors We Serve" },
                 { href: "/how-we-work", label: "How We Work" },
                 { href: "/case-studies", label: "Case Studies" },
+                { href: "/blog", label: "Blog" },
                 { href: "/resources", label: "Resources & FAQ" },
                 { href: "/contact", label: "Contact Us" },
               ].map((link) => (

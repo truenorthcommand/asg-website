@@ -79,7 +79,8 @@
 - [x] Build edit modal and preview modal
 - [x] Create brand voice guidelines document (docs/ASG_BRAND_VOICE.md)
 - [x] Create blog listing page and individual article pages with SEO
+- [x] Add blog links to header and footer navigation
+- [x] Update sitemap.xml with blog routes
 - [ ] Create AI generation job (scheduled Mon/Wed/Fri 6 PM)
-- [ ] Add blog links to navigation and update sitemap
 - [ ] Test blog system end-to-end
 - [ ] Set up monitoring for AI generation job
