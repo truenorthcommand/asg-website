@@ -81,6 +81,7 @@
 - [x] Create blog listing page and individual article pages with SEO
 - [x] Add blog links to header and footer navigation
 - [x] Update sitemap.xml with blog routes
+- [x] Seed 4 initial blog posts (emergency prevention, reactive vs proactive, compliance, case study)
 - [ ] Create AI generation job (scheduled Mon/Wed/Fri 6 PM)
 - [ ] Test blog system end-to-end
 - [ ] Set up monitoring for AI generation job
