@@ -8,8 +8,8 @@ export default function Footer() {
 
   return (
     <footer
-      className="text-gray-300"
-      style={{ backgroundColor: "var(--asg-navy)" }}
+      className="text-gray-700"
+      style={{ backgroundColor: "#FFFFFF" }}
       role="contentinfo"
       aria-label="Site footer"
     >
@@ -28,7 +28,7 @@ export default function Footer() {
                 height={56}
               />
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">
+            <p className="text-sm text-gray-600 leading-relaxed mb-4">
               The new industry standard in property maintenance and emergency response. 100% in-house team. Available 24/7.
             </p>
             <a
@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* Services column */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-asg-navy font-semibold text-sm uppercase tracking-wider mb-4">
               Services
             </h3>
             <ul className="space-y-2" role="list">
@@ -60,7 +60,7 @@ export default function Footer() {
                 <li key={service}>
                   <Link
                     href="/services"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-asg-navy transition-colors duration-200"
                   >
                     {service}
                   </Link>
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Company column */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-asg-navy font-semibold text-sm uppercase tracking-wider mb-4">
               Company
             </h3>
             <ul className="space-y-2" role="list">
@@ -86,7 +86,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-asg-navy transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -97,33 +97,33 @@ export default function Footer() {
 
           {/* Contact column */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+            <h3 className="text-asg-navy font-semibold text-sm uppercase tracking-wider mb-4">
               Contact
             </h3>
             <ul className="space-y-3" role="list">
               <li>
                 <a
                   href="tel:01233564666"
-                  className="flex items-start gap-3 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                  className="flex items-start gap-3 text-sm text-gray-600 hover:text-asg-navy transition-colors duration-200"
                   aria-label="Call us on 01233 564666"
                 >
-                  <Phone size={16} className="mt-0.5 shrink-0 text-gray-500" aria-hidden="true" />
+                  <Phone size={16} className="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />
                   <span>01233 564666</span>
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:info@adaptservicesgroup.co.uk"
-                  className="flex items-start gap-3 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                  className="flex items-start gap-3 text-sm text-gray-600 hover:text-asg-navy transition-colors duration-200"
                   aria-label="Email info@adaptservicesgroup.co.uk"
                 >
-                  <Mail size={16} className="mt-0.5 shrink-0 text-gray-500" aria-hidden="true" />
+                  <Mail size={16} className="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />
                   <span>info@adaptservicesgroup.co.uk</span>
                 </a>
               </li>
               <li>
-                <address className="flex items-start gap-3 text-sm text-gray-400 not-italic">
-                  <MapPin size={16} className="mt-0.5 shrink-0 text-gray-500" aria-hidden="true" />
+                <address className="flex items-start gap-3 text-sm text-gray-600 not-italic">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" aria-hidden="true" />
                   <span>
                     Unit 2 Meadow View Industrial Estate,<br />
                     Ruckinge, Ashford,<br />
@@ -137,29 +137,29 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
               <span>
                 © {currentYear} Adapt Services Group Ltd. Company No. 17042975. All rights reserved.
               </span>
               <span className="hidden sm:inline">·</span>
               <div className="flex items-center gap-3">
-                <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
+                <Link href="/privacy" className="hover:text-gray-700 transition-colors">Privacy Policy</Link>
                 <span>·</span>
-                <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms</Link>
+                <Link href="/terms" className="hover:text-gray-700 transition-colors">Terms</Link>
               </div>
             </div>
 
             {/* Mandatory attribution — hard requirement */}
-            <div className="flex items-center gap-1.5 font-medium text-gray-400">
+            <div className="flex items-center gap-1.5 font-medium text-gray-600">
               <span>Powered By</span>
               <a
                 href="https://truenorthoperationsgroup.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-gray-200 transition-colors flex items-center gap-1"
+                className="text-asg-navy hover:text-asg-green transition-colors flex items-center gap-1"
                 aria-label="TrueNorth Operations Group (opens in new tab)"
               >
                 TrueNorth Operations Group

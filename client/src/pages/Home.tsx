@@ -245,14 +245,14 @@ export default function Home() {
       {/* CTA Section */}
       <section
         className="py-16 lg:py-24"
-        style={{ background: "linear-gradient(135deg, var(--asg-navy) 0%, oklch(22% 0.06 152) 100%)" }}
+        style={{ backgroundColor: "#FFFFFF" }}
         aria-labelledby="cta-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 id="cta-heading" className="text-3xl lg:text-4xl font-black text-white mb-4">
+          <h2 id="cta-heading" className="text-3xl lg:text-4xl font-black text-asg-navy mb-4">
             Ready to Work with a Team You Can Trust?
           </h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
             Whether it's a planned maintenance programme or an emergency call-out, ASG delivers. Get in touch today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -271,9 +271,9 @@ export default function Home() {
               Emergency 24/7
             </Link>
           </div>
-          <p className="text-gray-500 text-sm mt-6">
+          <p className="text-gray-600 text-sm mt-6">
             Or call us directly:{" "}
-            <a href="tel:01233564666" className="text-white font-semibold hover:text-gray-200 transition-colors">
+            <a href="tel:01233564666" className="text-asg-navy font-semibold hover:text-asg-green transition-colors">
               01233 564666
             </a>
           </p>
