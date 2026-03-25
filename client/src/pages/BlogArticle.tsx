@@ -8,8 +8,11 @@ import { Streamdown } from "streamdown";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 
-export function BlogArticle() {
-  const { slug } = useParams<{ slug: string }>();
+interface BlogArticleProps {
+  slug?: string;
+}
+
+export function BlogArticle({ slug }: BlogArticleProps) {
 
   // Fetch the blog post
   const { data: post, isLoading, error } = trpc.blog.getBySlug.useQuery(

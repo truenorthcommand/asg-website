@@ -41,7 +41,9 @@ function Router() {
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route path="/blog" component={Blog} />
-          <Route path="/blog/:slug" component={BlogArticle} />
+          <Route path="/blog/:slug">
+            {(params) => <BlogArticle slug={params.slug} />}
+          </Route>
           <Route path="/admin/blog" component={AdminBlog} />
           <Route path="/404" component={NotFound} />
           {/* Final fallback route */}
