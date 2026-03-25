@@ -35,7 +35,7 @@ export default function Home() {
       {/* Hero Image Section — Full Width, No Overlay */}
       <section className="relative overflow-hidden h-96 lg:h-[500px]">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663393258417/gVGt3GVaioQVft9gFJLtBK/hero-banner_3ed1abdf.webp"
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663393258417/gVGt3GVaioQVft9gFJLtBK/asg-hero-aerial-kent-ivGFeyhw49mx3GUo93ZNHw.webp"
           alt="Aerial view of residential properties in Kent"
           className="w-full h-full object-cover"
           loading="eager"

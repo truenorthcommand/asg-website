@@ -64,3 +64,5 @@
 ## Visual Updates
 - [x] Replace Home hero gradient background with aerial property PNG (with dark overlay)
 - [x] Restructure hero: full-width photo section (no overlay) + content section below
+- [x] Generate photorealistic 1920x500px aerial hero banner (AI-generated)
+- [x] Upload new hero banner to CDN and deploy to Home page
