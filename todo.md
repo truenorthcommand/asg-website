@@ -66,3 +66,9 @@
 - [x] Restructure hero: full-width photo section (no overlay) + content section below
 - [x] Generate photorealistic 1920x500px aerial hero banner (AI-generated)
 - [x] Upload new hero banner to CDN and deploy to Home page
+
+## Legal Pages
+- [x] Create Privacy Policy page (/privacy) with UK GDPR compliance
+- [x] Create Terms & Conditions page (/terms)
+- [x] Link Privacy and Terms pages in Footer
+- [x] Update App.tsx routing for Privacy and Terms pages
