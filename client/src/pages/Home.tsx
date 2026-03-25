@@ -35,16 +35,18 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="relative overflow-hidden py-20 lg:py-32"
-        style={{ background: "linear-gradient(135deg, var(--asg-navy) 0%, oklch(22% 0.06 152) 100%)" }}
+        style={{
+          backgroundImage: `url('https://d2xsxph8kpxj0f.cloudfront.net/310519663393258417/gVGt3GVaioQVft9gFJLtBK/asg-hero-aerial_aadce161.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
         aria-labelledby="hero-heading"
       >
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5" aria-hidden="true">
-          <div className="absolute inset-0" style={{
-            backgroundImage: "repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px"
-          }} />
-        </div>
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0" aria-hidden="true"
+          style={{ background: "linear-gradient(to bottom right, rgba(26,35,50,0.82) 0%, rgba(26,35,50,0.65) 50%, rgba(26,35,50,0.75) 100%)" }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">

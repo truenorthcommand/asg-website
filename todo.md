@@ -60,3 +60,6 @@
 - [ ] Google Analytics / analytics tagging implementation
 - [ ] Form submission end-to-end test against live TrueNorthOS
 - [ ] GitHub push (AdaptServices-Group/New-Website)
+
+## Visual Updates
+- [x] Replace Home hero gradient background with aerial property PNG (with dark overlay)
