@@ -18,13 +18,15 @@ export const blogRouter = router({
         category: z
           .enum(["maintenance", "case-study", "emergency"])
           .optional(),
-      })
+      }).optional()
     )
     .query(async ({ input }) => {
-      if (input.category) {
-        return db.getBlogPostsByCategory(input.category);
+      const limit = input?.limit ?? 20;
+      const category = input?.category;
+      if (category) {
+        return db.getBlogPostsByCategory(category);
       }
-      return db.getPublishedPosts(input.limit);
+      return db.getPublishedPosts(limit);
     }),
 
   /**

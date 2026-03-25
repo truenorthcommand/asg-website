@@ -21,9 +21,13 @@ export function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
 
   // Fetch published posts
-  const { data: posts = [], isLoading } = trpc.blog.getPublished.useQuery({
+  const { data: posts = [], isLoading, error } = trpc.blog.getPublished.useQuery({
     limit: 100,
   });
+
+  // Debug logging
+  console.log('Blog posts loaded:', posts.length, 'posts');
+  if (error) console.error('Blog fetch error:', error);
 
   // Filter posts based on search and category
   const filteredPosts = posts.filter((post: any) => {

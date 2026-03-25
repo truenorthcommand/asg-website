@@ -90,23 +90,21 @@ export async function getScheduledPosts() {
 
 export async function getPublishedPosts(limit = 20) {
   const db = getDatabase();
-  return db
+  return await db
     .select()
     .from(blogPosts)
     .where(eq(blogPosts.status, "published"))
     .orderBy(desc(blogPosts.publishDate))
-    .limit(limit)
-    .all();
+    .limit(limit);
 }
 
 export async function getBlogPostsByCategory(category: "maintenance" | "case-study" | "emergency") {
   const db = getDatabase();
-  return db
+  return await db
     .select()
     .from(blogPosts)
     .where(and(eq(blogPosts.category, category), eq(blogPosts.status, "published")))
-    .orderBy(desc(blogPosts.publishDate))
-    .all();
+    .orderBy(desc(blogPosts.publishDate));
 }
 
 export async function getRelatedBlogPosts(slug: string, limit = 3) {
