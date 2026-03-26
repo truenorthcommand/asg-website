@@ -1,0 +1,34 @@
+{
+  "query": "SELECT id, slug, title, featured_image FROM blog_posts WHERE status = 'published' LIMIT 4;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3L6WrucWLY6mbFz.root --database gVGt3GVaioQVft9gFJLtBK --execute SELECT id, slug, title, featured_image FROM blog_posts WHERE status = 'published' LIMIT 4;",
+  "rows": [
+    {
+      "id": "7",
+      "slug": "why-emergencies-happen-at-2am",
+      "title": "Why Property Maintenance Emergencies Happen at 2 AM (And How to Prevent Them)",
+      "featured_image": "https://cdn.adaptservicesgroup.co.uk/blog/emergency-prevention.jpg"
+    },
+    {
+      "id": "8",
+      "slug": "reactive-vs-proactive-maintenance",
+      "title": "The Hidden Cost of Reactive vs. Proactive Property Maintenance",
+      "featured_image": "https://cdn.adaptservicesgroup.co.uk/blog/reactive-proactive.jpg"
+    },
+    {
+      "id": "9",
+      "slug": "compliance-safety-standards",
+      "title": "What Property Managers Need to Know About Compliance & Safety Standards",
+      "featured_image": "https://cdn.adaptservicesgroup.co.uk/blog/compliance-standards.jpg"
+    },
+    {
+      "id": "10",
+      "slug": "emergency-response-leak-case-study",
+      "title": "Emergency Response Case Study: How We Fixed a Catastrophic Leak in 90 Minutes",
+      "featured_image": "https://cdn.adaptservicesgroup.co.uk/blog/leak-case-study.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\tfeatured_image\n7\twhy-emergencies-happen-at-2am\tWhy Property Maintenance Emergencies Happen at 2 AM (And How to Prevent Them)\thttps://cdn.adaptservicesgroup.co.uk/blog/emergency-prevention.jpg\n8\treactive-vs-proactive-maintenance\tThe Hidden Cost of Reactive vs. Proactive Property Maintenance\thttps://cdn.adaptservicesgroup.co.uk/blog/reactive-proactive.jpg\n9\tcompliance-safety-standards\tWhat Property Managers Need to Know About Compliance & Safety Standards\thttps://cdn.adaptservicesgroup.co.uk/blog/compliance-standards.jpg\n10\temergency-response-leak-case-study\tEmergency Response Case Study: How We Fixed a Catastrophic Leak in 90 Minutes\thttps://cdn.adaptservicesgroup.co.uk/blog/leak-case-study.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 362
+}

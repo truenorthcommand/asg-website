@@ -108,7 +108,6 @@ export function BlogArticle({ slug }: BlogArticleProps) {
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4 flex-wrap">
             <Badge>{post.category}</Badge>
-            <Badge variant="outline">{post.author}</Badge>
           </div>
 
           <h1 className="text-4xl font-bold mb-4 text-gray-900">{post.title}</h1>
