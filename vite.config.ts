@@ -179,6 +179,15 @@ export default defineConfig({
       "localhost",
       "127.0.0.1",
     ],
+    // HMR: use the tunnelled WSS connection so the Manus preview iframe
+    // doesn't try to open a direct WebSocket to localhost (which fails inside
+    // the iframe sandbox and causes the preview pane crash icon).
+    // clientPort:443 + protocol:'wss' tells the browser to connect HMR over
+    // the same HTTPS tunnel as the page — no effect on production builds.
+    hmr: {
+      clientPort: 443,
+      protocol: "wss",
+    },
     fs: {
       strict: true,
       deny: ["**/.*"],
