@@ -157,7 +157,7 @@ export default function Footer() {
             <div className="flex items-center gap-1.5 font-medium text-gray-600">
               <span>Powered By</span>
               <a
-                href="https://truenorthoperationsgroup.com"
+                href="https://truenorthos.co.uk/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-asg-navy hover:text-asg-green transition-colors flex items-center gap-1"
